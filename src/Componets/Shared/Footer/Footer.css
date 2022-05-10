@@ -1,0 +1,23 @@
+.footer-section{
+    background-image: url('../../../images/doctor/appointment.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin-top: 150px;
+    padding: 0px 100px;
+}
+.footer-items ul li a{
+    margin-top: 20px;
+    display: block;
+    font-weight: 500;
+    color: rgb(212, 211, 211);
+    text-transform: capitalize;
+}
+
+.footer-items p{
+    color: rgb(212, 211, 211);
+}
+
+
+.footer-social li a{
+    color: #000;
+}
