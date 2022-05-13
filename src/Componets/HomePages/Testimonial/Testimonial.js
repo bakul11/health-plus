@@ -2,6 +2,7 @@ import React from 'react';
 import team1 from '../../../images/doctor/people1.png'
 import team2 from '../../../images/doctor/people2.png'
 import team3 from '../../../images/doctor/people3.png'
+import Zoom from 'react-reveal/Zoom';
 
 import TestimonialCard from '../TestimonialCard/TestimonialCard';
 
@@ -31,8 +32,10 @@ const Testimonial = () => {
     return (
         <div className='container'>
             <div className="Testimonial-title">
-                <p>we are here for your care</p>
-                <h3 className='mt-2 mb-2 fs-3 mb-4'>What's our  Patients <br /> says </h3>
+                <Zoom>
+                    <p>we are here for your care</p>
+                    <h3 className='mt-2 mb-2 fs-3 mb-4'>What's our  Patients <br /> says </h3>
+                </Zoom>
             </div>
             <div className="row gy-4">
                 {

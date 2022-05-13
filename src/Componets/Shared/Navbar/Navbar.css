@@ -1,3 +1,11 @@
-.navlink .active{
-    background: #000;
+.navbar .active{
+   color: #2d3b48!important;
+}
+button.logout {
+    background: none;
+    border: none;
+    color: white;
+    margin-top: 8px;
+    display: block;
+    margin-left: 30px;
 }
