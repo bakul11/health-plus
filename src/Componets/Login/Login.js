@@ -6,15 +6,16 @@ import { useSendPasswordResetEmail, useSignInWithEmailAndPassword } from 'react-
 import { useLocation, useNavigate } from 'react-router-dom';
 import swal from 'sweetalert';
 import Social from '../.././Componets/Social/Social'
-import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../Firebase/firebaseConfig';
 import Footer from '../Shared/Footer/Footer';
 import Slide from 'react-reveal/Slide';
+import useUser from '../.././Hooks/useUser';
 
 const LogIn = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [customError, setCustomError] = useState('');
+
 
     const [
         signInWithEmailAndPassword,
@@ -25,6 +26,18 @@ const LogIn = () => {
 
 
     const [sendPasswordResetEmail] = useSendPasswordResetEmail(auth);
+
+
+
+    //data get from mongodb
+
+    const [token] = useUser(user);
+
+    //data get from mongodb
+
+
+
+
 
     // Redirect User After Login 
     //===============================================================================================
@@ -44,7 +57,7 @@ const LogIn = () => {
         GoSignInNavigate('/signup');
     }
 
-    if (user) {
+    if (token) {
         navigate(from, { replace: true });
         swal("Login Done!", "Login Successfully Done !", "success");
     }

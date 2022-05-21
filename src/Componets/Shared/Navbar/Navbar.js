@@ -15,6 +15,7 @@ const Navbar = () => {
     const handleLogOut = () => {
         navigate('/');
         signOut(auth);
+        localStorage.removeItem('accessToken');
         swal('Logout Done', 'your account logout success', 'success');
     }
 
@@ -34,11 +35,12 @@ const Navbar = () => {
                         <li className="nav-item">
                             <NavLink className="nav-link text-light ms-5" aria-current="page" to="/appointment">Appointment</NavLink>
                         </li>
-                        <li className="nav-item">
-                            <NavLink className="nav-link text-light ms-5" aria-current="page" to="/dashboard">Dashboard</NavLink>
-                        </li>
+
                         <li className="nav-item">
                             <NavLink className="nav-link text-light ms-5" aria-current="page" to="/signup">Register</NavLink>
+                        </li>
+                        <li className="nav-item">
+                            <NavLink className="nav-link text-light ms-5" aria-current="page" to="/dash">Dashboard</NavLink>
                         </li>
                         <li className="nav-item">
                             {

@@ -50,7 +50,7 @@ const OrderCard = ({ order, setOrder }) => {
                     </thead>
                     <tbody>
                         {
-                            order.map((order, index) =>
+                            order?.map((order, index) =>
                                 <tr className='h3 fs-6' key={ order._id }>
                                     <td className='text-center'>{ index + 1 }</td>
                                     <td>{ order.serviceBookingName }</td>

@@ -5,11 +5,17 @@ import { useSignInWithGoogle, useSignInWithFacebook, useSignInWithGithub } from 
 import { useLocation, useNavigate } from 'react-router-dom';
 import swal from 'sweetalert';
 import auth from '../Firebase/firebaseConfig';
+import useUser from '../.././Hooks/useUser'
 
 const Social = () => {
     const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
     const [signInWithFacebook] = useSignInWithFacebook(auth);
     const [signInWithGithub] = useSignInWithGithub(auth);
+
+
+
+
+    const [token] = useUser(user);
 
     // Redirect User After Login 
     //===============================================================================================
@@ -22,7 +28,11 @@ const Social = () => {
     }
 
     //================================================================================================
-    if (user) {
+
+
+
+
+    if (token) {
         navigate(from, { replace: true });
         swal("Login Done!", "Login Successfully Done !", "success");
     }

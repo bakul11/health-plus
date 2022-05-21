@@ -1,5 +1,5 @@
 import React from 'react';
-import slide1 from '../../../images/slide/slide4.png'
+import slide1 from '../../../images/slide/slide1.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCoffee, faAngleDoubleRight } from '@fortawesome/free-solid-svg-icons'
 import Slide from 'react-reveal/Slide';
@@ -17,7 +17,7 @@ const BannerSlide = () => {
         <section style={ { backgroundColor: '#f1faff', paddingTop: '100px' } }>
             <div className='container'>
                 <div className="row gy-5">
-                    <div className="col-lg-6">
+                    <div className="col-lg-5">
                         <Slide left>
                             <div className="slide-title">
                                 <p>we are here for your care</p>
@@ -27,10 +27,10 @@ const BannerSlide = () => {
                             </div>
                         </Slide>
                     </div>
-                    <div className="col-lg-5 offset-lg-1">
+                    <div className="col-lg-6 offset-lg-1">
                         <Slide right>
                             <div className="slide-logo">
-                                <img src={ slide1 } alt="logo" />
+                                <img src={ slide1 } alt="logo" className='d-block mx-auto' style={{height:'300px',width:'600px'}}/>
                             </div>
                         </Slide>
                     </div>

@@ -1,5 +1,8 @@
 .navbar .active{
-   color: #2d3b48!important;
+   color: #c8d41ffb!important;
+}
+.bg-primary {
+    background: linear-gradient(to right, #0d30d3, #3e01a1);
 }
 button.logout {
     background: none;

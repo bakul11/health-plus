@@ -9,6 +9,7 @@ import Social from '../.././Componets/Social/Social'
 import auth from '../Firebase/firebaseConfig';
 import Footer from '../Shared/Footer/Footer';
 import Slide from 'react-reveal/Slide';
+import useUser from '../../Hooks/useUser';
 
 
 const SignUp = () => {
@@ -30,18 +31,35 @@ const SignUp = () => {
     const GoSignInNavigate = useNavigate();
 
 
+
+    //signup details send mongodb
+
+    const [token] = useUser(user);
+
+
+
+    //signup details send mongodb
+
+
+
+
+
+
+
     // Redirect User After Login 
     //===============================================================================================
     const location = useLocation();
     let from = location.state?.from?.pathname || "/";
     const navigate = useNavigate();
+
+
     if (user) {
         navigate(from, { replace: true });
         swal("Login Done!", "Login Successfully Done !", "success")
     }
 
     //================================================================================================
-    if (user) {
+    if (token) {
         navigate(from, { replace: true });
         swal("Registration Done!", "Register Successfully Done !", "success");
     }
