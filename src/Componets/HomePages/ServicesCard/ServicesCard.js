@@ -22,7 +22,7 @@ const ServicesCard = ({ service }) => {
                     <div className="card-body">
                         <h3 className='text-capitalize fs-5 mb-3'>{ serviceName }</h3>
                         <p>{ discription.length > 100 ? discription.slice(0, 130) : discription }</p>
-                        <button className="btn btn-primary mt-2" onClick={ handleReadMore }>Read More<FontAwesomeIcon icon={ faAngleDoubleRight } className='ms-2'></FontAwesomeIcon></button>
+                        <button className="btn btn-primary mt-2" onClick={ handleReadMore }>Get Services<FontAwesomeIcon icon={ faAngleDoubleRight } className='ms-2'></FontAwesomeIcon></button>
                     </div>
                 </div>
             </Zoom>

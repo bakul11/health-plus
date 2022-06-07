@@ -1,180 +1,113 @@
-import React, { useState } from 'react';
-import logoSign from '../.././images/medical.jpg'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEnvelopeOpenText, faUnlockKeyhole, faUserAlt } from '@fortawesome/free-solid-svg-icons';
+import React, { useState } from "react";
+import { useForm } from "react-hook-form";
 import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
-import { useLocation, useNavigate } from 'react-router-dom';
-import swal from 'sweetalert';
-import Social from '../.././Componets/Social/Social'
-import auth from '../Firebase/firebaseConfig';
-import Footer from '../Shared/Footer/Footer';
+import { useUpdateProfile } from 'react-firebase-hooks/auth';
+import swal from "sweetalert";
+import SocialMedia from "../SocialMedia/SocialMedia";
+import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
+import logPhoto from '../../images/docLogin.png';
 import Slide from 'react-reveal/Slide';
-import useUser from '../../Hooks/useUser';
+import auth from "../Firebase/firebaseConfig";
+import useToken from "../../Hooks/useToken";
 
 
-const SignUp = () => {
+const Register = () => {
+    const [createUserWithEmailAndPassword, user, loading, error,] = useCreateUserWithEmailAndPassword(auth);
+    const { register, handleSubmit, formState: { errors } } = useForm();
 
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [confirmPassword, setConfirmPassword] = useState('');
-    const [customError, setCustomError] = useState('');
-    const [agree, setAgree] = useState(false);
+    const [matchPass, setMatchPass] = useState('');
+    const [updateProfile] = useUpdateProfile(auth);
 
-    const [
-        createUserWithEmailAndPassword,
-        user,
-        loadning,
-        error,
-    ] = useCreateUserWithEmailAndPassword(auth);
+    //==========================================
+    //Redirect Before Login 
+    let navigate = useNavigate();
+    let location = useLocation();
 
-    const GoSignInNavigate = useNavigate();
-
-
-
-    //signup details send mongodb
-
-    const [token] = useUser(user);
-
-
-
-    //signup details send mongodb
-
-
-
-
-
-
-
-    // Redirect User After Login 
-    //===============================================================================================
-    const location = useLocation();
     let from = location.state?.from?.pathname || "/";
-    const navigate = useNavigate();
+    //==========================================
+
+    const [token] = useToken(user);
 
 
-    if (user) {
-        navigate(from, { replace: true });
-        swal("Login Done!", "Login Successfully Done !", "success")
-    }
-
-    //================================================================================================
     if (token) {
         navigate(from, { replace: true });
-        swal("Registration Done!", "Register Successfully Done !", "success");
+        swal('Resister Success', 'Register is Successfully Done', 'success');
     }
 
-    const handleGoSignIn = () => {
-        GoSignInNavigate('/login');
-    }
-
-    //Handle Name 
-    const handleName = e => {
-        setName(e.target.value);
-    }
-    //Handle Email 
-    const handleEmail = e => {
-        setEmail(e.target.value);
-
-    }
-
-    //Handle Password 
-    const handlePassword = e => {
-        setPassword(e.target.value);
-    }
-
-    //Handle Confirm Password 
-    const handleConfirmPassword = e => {
-        setConfirmPassword(e.target.value);
-        console.log(user);
-
-    }
-
-
-    //Handle Submit All Data 
-    const handleSubmitData = event => {
-        if (password !== confirmPassword) {
-            setCustomError("Password doesn't match..Please Match Your Password");
-            event.preventDefault();
-            return;
+    const onSubmit = async (data) => {
+        if (data.password !== data.confirmPassword) {
+            setMatchPass("Password doesn't match..Please Match Your Password");
         }
-        createUserWithEmailAndPassword(email, password)
-        event.preventDefault();
+        await createUserWithEmailAndPassword(data.email, data.password);
+        await updateProfile({ displayName: data.fullName });
         return;
-    }
 
+    }
 
 
     return (
-        <section>
-            <div className='container'>
-                <div className="row gy-5">
-                    <div className="col-lg-6">
-                        <Slide right>
-                            <div className="logo mt-5">
-                                <img src={ logoSign } alt="logo" className='img-fluid d-block mx-auto' style={ { height: '350px', width: '500px' } } />
-                            </div>
-                        </Slide>
-                    </div>
-                    <div className="col-lg-5 offset-lg-1">
-                        <Slide left>
-                            <div className="register mt-4 mb-5">
-                                <div className="card pt-3 pb-2">
-                                    <h3 className='text-center fs-4 mb-4'>Please Register Now !</h3>
-                                    <form onSubmit={ handleSubmitData }>
-                                        <div className="row gy-1 ps-2 pe-2">
-                                            <div className="col-lg-12">
-                                                <div className="input-group mb-3">
-                                                    <span className="input-group-text bg-primary" id="basic-addon1"><FontAwesomeIcon icon={ faUserAlt } className='text-light'></FontAwesomeIcon></span>
-                                                    <input type="text" className="form-control p-2" placeholder="Full Name" aria-label="Username" aria-describedby="basic-addon1" required onBlur={ handleName } />
-                                                </div>
-                                            </div>
-                                            <div className="col-lg-12">
-                                                <div className="input-group mb-3">
-                                                    <span className="input-group-text bg-primary" id="basic-addon1"><FontAwesomeIcon icon={ faEnvelopeOpenText } className='text-light'></FontAwesomeIcon></span>
-                                                    <input type="email" className="form-control p-2" placeholder="Email address" aria-label="Username" aria-describedby="basic-addon1" required onBlur={ handleEmail } />
-                                                </div>
-                                            </div>
-                                            {/* Already have a email */ }
-                                            <p className='text-danger text-center m-0' style={ { fontWeight: '500' } }>{ error?.message?.includes('already') ? 'You already use this email.Please use another account' : '' }</p>
-                                            <div className="col-lg-12">
-                                                <div className="input-group mb-3">
-                                                    <span className="input-group-text bg-primary" id="basic-addon1"><FontAwesomeIcon icon={ faUnlockKeyhole } className='text-light'></FontAwesomeIcon></span>
-                                                    <input type="password" className="form-control p-2" placeholder="Create new Password" aria-label="Username" aria-describedby="basic-addon1" required onBlur={ handlePassword } />
-                                                </div>
-                                            </div>
-                                            <div className="col-lg-12">
-                                                <div className="input-group mb-3">
-                                                    <span className="input-group-text bg-primary" id="basic-addon1"><FontAwesomeIcon icon={ faUnlockKeyhole } className='text-light'></FontAwesomeIcon></span>
-                                                    <input type="password" className="form-control p-2" placeholder="Confirm Password" aria-label="Username" aria-describedby="basic-addon1" required onBlur={ handleConfirmPassword } />
-                                                </div>
-                                            </div>
-                                            {/* Password doesn't match */ }
-                                            <p className='text-danger text-center m-0' style={ { fontWeight: '500' } }>{ customError }</p>
-                                            <div className="col-lg-12">
-                                                <input type="checkbox" name="" id="check" className='pe-2' onClick={ () => setAgree(!agree) } />
-                                                <label htmlFor="check" className={ agree ? 'ps-2 text-primary' : 'ps-2 text-danger' }>I agree to the terms and conditions</label>
-                                            </div>
-                                            <div className="col-lg-12">
-                                                <input type="submit" className="form-control form-control-lg fs-6 fw-bold bg-primary text-light" disabled={ !agree } value='Register Now' />
-                                            </div>
-                                        </div>
-                                        {/* Social Media add */ }
-                                        <Social></Social>
-                                        <div className="account text-center mt-3">
-                                            <p className='text-secondary'>Already have an account ? <span className='text-primary fw-bold' style={ { cursor: 'pointer' } } onClick={ handleGoSignIn }>Login Now</span></p>
-                                        </div>
-                                        <p className='text-danger text-center m-0' style={ { fontWeight: '500' } }>{ error?.message?.includes('network') ? 'Please Check Your Internet Conection' : '' }</p>
-                                    </form>
-                                </div>
-                            </div>
-                        </Slide>
-                    </div>
+        <div className='container mt-5'>
+            <div className="row gy-5">
+                <div className="col-lg-6">
+                    <Slide right>
+                        <img src={ logPhoto } alt='photo' className='img-fluid mt-5'></img>
+                    </Slide>
                 </div>
-            </div >
-            <Footer></Footer>
-        </section >
+                <div className="col-lg-5 offset-lg-1">
+                    <Slide left>
+                        <div className="card p-3 shadow-lg mt-5">
+                            <h2 className="mb-4 mt-3 fs-4 text-center text-primary">Please Register Now !</h2>
+                            <form onSubmit={ handleSubmit(onSubmit) }>
+                                <div className="row gy-2">
+                                    <div className="col-lg-12">
+                                        <label htmlFor="nn">Name</label><br></br>
+                                        <input { ...register("fullName", { required: true }) } type="text" id="nn" placeholder="Name" className="form-control" />
+                                        { errors.fullName && <span className="text-danger mt-2">Full Name required</span> }
+                                    </div>
+                                    <div className="col-lg-12">
+                                        <label htmlFor="mm">Email</label><br></br>
+                                        <input { ...register("email", { required: true }) } type="email" id="mm" placeholder="Email Address" className="form-control" />
+                                        { errors.email && <span className="text-danger mt-2">Email is required</span> }
+                                    </div>
+                                    {/* if already use this Email Address */ }
+                                    <p className="text-danger" style={ { fontWeight: '500' } }>{ error?.message?.includes('email-already-in-use') ? 'You already use this email.Please use another email' : '' }</p>
+
+                                    <div className="col-lg-12">
+                                        <label htmlFor="pp">Password</label><br></br>
+                                        <input { ...register("password", { required: true }) } type="password" id="pp" placeholder="Create New Password" className="form-control" />
+                                        { errors.password && <span className="text-danger mt-2">Password is required</span> }
+                                    </div>
+                                    <div className="col-lg-12">
+                                        <label htmlFor="con">Confirm Password</label><br></br>
+                                        <input { ...register("confirmPassword", { required: true }) } type="password" id="con" placeholder="Confirm Password" className="form-control" />
+                                        { errors.confirmPassword && <span className="text-danger mt-2">Confirm Password is required</span> }
+                                    </div>
+                                    {/* if Password doesn't match  */ }
+                                    <p className="text-danger" style={ { fontWeight: '500' } }>{ matchPass }</p>
+                                    <div className="col-lg-12">
+                                        <input type="submit" value='Register' className="btn btn-primary w-100 d-block" />
+                                    </div>
+                                    {/*Network Error Message */ }
+                                    <p className='text-danger text-center m-0' style={ { fontWeight: '500' } }>{ error?.message?.includes('network') ? 'Please Check Your Internet Conection' : '' }</p>
+                                </div>
+                                {/* Google Login System */ }
+                                <div className="social-login mt-4">
+                                    <div className="social d-flex justify-content-center align-items-center">
+                                        <div className="bg-dark" style={ { height: '2px', width: '100px', borderRadius: '50px' } }></div>
+                                        <div className="fw-bold ms-2 me-2" >OR</div>
+                                        <div className="bg-dark" style={ { height: '2px', width: '100px', borderRadius: '50px' } }></div>
+                                    </div>
+                                </div>
+                            </form>
+                            <SocialMedia></SocialMedia>
+                            <p className="text-center mt-3 fs-6">Already have an account? <Link to='/login' className="text-primary">Login</Link></p>
+                        </div>
+                    </Slide>
+                </div>
+            </div>
+
+        </div>
     );
 };
 
-export default SignUp;
+export default Register;

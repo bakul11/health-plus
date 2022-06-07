@@ -2,7 +2,7 @@ import { faAngleDoubleRight } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 import slide1 from '../../../images/doctor/doc.png';
-import Bounce from 'react-reveal/Bounce';
+import Slide from 'react-reveal/Slide';
 import { useNavigate } from 'react-router-dom';
 
 const Story = () => {
@@ -15,14 +15,14 @@ const Story = () => {
         <div className='container' style={ { paddingTop: '100px' } }>
             <div className="row gy-5">
                 <div className="col-lg-6">
-                    <Bounce right>
+                    <Slide right>
                         <div className="slide-logo">
                             <img src={ slide1 } alt="logo" />
                         </div>
-                    </Bounce>
+                    </Slide>
                 </div>
                 <div className="col-lg-6">
-                    <Bounce left>
+                    <Slide left>
                         <div className="slide-title">
                             <p>we are here for your care</p>
                             <h3 className='mt-2 mb-2 fs-1'>Why you choose us ?</h3>
@@ -30,7 +30,7 @@ const Story = () => {
                             <p className='mt-3'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates dolore quis deleniti ab culpa! Consequatur quas ratione ipsum nulla ad, quisquam quam molestiae impedit minima rem asperiores aspernatur consectetur pariatur sed dicta magnam repudiandae neque id atque minus molestias sapiente.</p>
                             <button className="btn btn-primary mt-2 p-2" onClick={ handleGetAppointment }>Get Appointment <FontAwesomeIcon icon={ faAngleDoubleRight } className='ms-2'></FontAwesomeIcon></button>
                         </div>
-                    </Bounce>
+                    </Slide>
                 </div>
             </div>
         </div>

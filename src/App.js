@@ -7,12 +7,14 @@ import Navbar from "./Componets/Shared/Navbar/Navbar";
 import SignUp from "./Componets/SignUp/SignUp";
 import NoMatch from "./Componets/NoMatch/NoMatch";
 import RequireAuth from "./Componets/RequireAuth/RequireAuth";
-import MyOrder from "./Componets/MyOrder/MyOrder";
 import ServicesDetails from "./Componets/HomePages/ServicesDetails/ServicesDetails";
-import DashPages from "./Componets/DashPages/DashPages";
-import AddDoctors from "./Componets/DashPages/AddDoctors";
-import DoctorList from "./Componets/DashPages/DoctorList";
-import AdminUser from "./Componets/DashPages/AdminUser";
+import DashBoard from "./Componets/DashBoard/DashBoard";
+import WelComeBoard from "./Componets/DashBoard/WelComeBoard";
+import MyServices from "./Componets/DashBoard/MyServices";
+import AddServices from "./Componets/DashBoard/AddServices";
+import AllBookingServices from "./Componets/DashBoard/AllBookingServices";
+import Admin from "./Componets/DashBoard/Admin";
+
 
 
 const App = () => {
@@ -28,15 +30,17 @@ const App = () => {
         }></Route>
         <Route path="/login" element={ <Login></Login> }></Route>
         <Route path="/signup" element={ <SignUp></SignUp> }></Route>
-        <Route path="/order" element={ <MyOrder></MyOrder> }></Route>
 
-        {/* Routing Nested */ }
-        <Route path="/dash" element={ <DashPages></DashPages> }>
-          <Route index element={ <AddDoctors></AddDoctors> }></Route>
-          <Route path="DoctorList" element={ <DoctorList></DoctorList> }></Route>
-          <Route path="admin" element={ <AdminUser></AdminUser> }></Route>
+        {/* ==============================DashBoard Start ============================== */ }
+        <Route path='/dashboard' element={ <DashBoard></DashBoard> }>
+          <Route index element={ <WelComeBoard></WelComeBoard> }></Route>
+          <Route path="myservices" element={ <MyServices></MyServices> }></Route>
+          <Route path='addservices' element={ <AddServices></AddServices> }></Route>
+          <Route path='admin' element={ <Admin></Admin> }></Route>
+          <Route path='allbooking' element={ <AllBookingServices></AllBookingServices> }></Route>
         </Route>
-        {/* Routing Nested */ }
+        {/* ==============================DashBoard End ============================== */ }
+
         <Route path="/serviceDetails/:name/:discription" element={ <ServicesDetails></ServicesDetails> }></Route>
         <Route path="*" element={ <NoMatch></NoMatch> }></Route>
       </Routes>
