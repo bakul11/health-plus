@@ -2,28 +2,15 @@
 
 Live Site Link :  [www.gadgets.com](https://gadgets-house-b75e3.web.app/).
 
-## Description  :
-
-This project mady by : 
-
-1.HTML5 
-
-2.CSS3 
-
-3.Bootstrap V5 
-
-4.JavaScript 
-
-5.ReactJs
-
-6.Firebase 
-
-7.React-Firebase-Hooks
-
-8.React-Hook-Form
-
-9.React-Router-Dom
 
 ## Contact with Me :
 Github Link :  [github](https://github.com/bakul11).
-# health-plus
+
+# Features:
+1.•	Login, registration, reset password, logout, email verification, and Google sign in with Firebase authentication have all been added.
+2.•	There is a dashboard route which is private. After logging in, the user can see this. On the dashboard there are three nested routes for normal users and 5 nested routes for admin.
+
+
+#Technology Used : 
+HTML, CSS, Bootstrap, ReactJS, React Router Dom, React Modal, Firebase, React Firebase Hooks, React Hook Form, , React SweetAlert, NodeJs, ExpressJs, Cors, DotEnv, Jsonwebtoken(JWT), Nodemon, MongoDB (Database);
+
