@@ -6,7 +6,7 @@ const Admin = () => {
     const [admin, setAdmin] = useState([]);
 
     useEffect(() => {
-        const url = `http://localhost:5000/allAdmin`;
+        const url = `https://tranquil-tor-96157.herokuapp.com/allAdmin`;
         fetch(url, {
             method: 'GET',
             headers: {

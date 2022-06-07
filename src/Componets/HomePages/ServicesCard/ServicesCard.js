@@ -17,7 +17,7 @@ const ServicesCard = ({ service }) => {
     return (
         <div className='col-lg-4 col-md-6 text-center'>
             <Zoom>
-                <div className="card shadow-lg">
+                <div className="shadow-lg">
                     <FontAwesomeIcon icon={ servicesIcon } className='pt-3' size='3x' style={ { color: '#d1517a' } }></FontAwesomeIcon>
                     <div className="card-body">
                         <h3 className='text-capitalize fs-5 mb-3'>{ serviceName }</h3>

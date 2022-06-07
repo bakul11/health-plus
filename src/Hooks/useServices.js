@@ -5,7 +5,7 @@ const useServices = () => {
     const [loader, setLoader] = useState(true);
 
     useEffect(() => {
-        fetch('http://localhost:5000/allServices')
+        fetch('https://tranquil-tor-96157.herokuapp.com/allServices')
             .then(res => res.json())
             .then(data => {
                 setServices(data);

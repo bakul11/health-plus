@@ -29,7 +29,7 @@ const BookModal = ({ modalIsOpen, closeModal, services, date }) => {
 
     const onSubmit = data => {
 
-        const url = 'http://localhost:5000/bookingOrder';
+        const url = 'https://tranquil-tor-96157.herokuapp.com/bookingOrder';
 
         fetch(url, {
             method: 'POST',

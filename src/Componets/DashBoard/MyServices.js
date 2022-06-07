@@ -16,7 +16,7 @@ const MyServices = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        const url = `http://localhost:5000/myServices?email=${email}`;
+        const url = `https://tranquil-tor-96157.herokuapp.com/myServices?email=${email}`;
         fetch(url, {
             method: 'GET',
             headers: {
@@ -39,7 +39,7 @@ const MyServices = () => {
         const confirmDelete = window.confirm('Do You Want Delete This Services?');
 
         if (confirmDelete) {
-            const url = `http://localhost:5000/deleteOrder/${id}`;
+            const url = `https://tranquil-tor-96157.herokuapp.com/deleteOrder/${id}`;
             fetch(url, {
                 method: 'DELETE'
             })

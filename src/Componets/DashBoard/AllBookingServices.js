@@ -3,15 +3,15 @@ import { Slide } from 'react-reveal';
 
 const AllBookingServices = () => {
     const [service, setService] = useState([]);
-   
+
     useEffect(() => {
-        const url = `http://localhost:5000/allBookingOrder`;
+        const url = `https://tranquil-tor-96157.herokuapp.com/allBookingOrder`;
         fetch(url)
             .then(res => res.json())
             .then(data => setService(data))
     }, [])
 
-   
+
 
     return (
         <div className='container card mt-5'>

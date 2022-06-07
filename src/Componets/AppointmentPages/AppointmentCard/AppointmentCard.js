@@ -20,7 +20,7 @@ const AppointmentCard = ({ services, date }) => {
     return (
         <div className='col-lg-4 col-md-6'>
             <Zoom>
-                <div className="card">
+                <div className="shadow-lg">
                     <div className="card-body text-center">
                         <h3 className='fs-5'>{ name }</h3>
                         <p className='mt-2 mb-2'>

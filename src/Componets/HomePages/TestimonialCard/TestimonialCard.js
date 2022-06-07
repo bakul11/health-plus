@@ -7,7 +7,7 @@ const TestimonialCard = (props) => {
     return (
         <div className='col-lg-4 col-md-12'>
             <Zoom>
-                <div className="card team-section p-3">
+                <div className="shadow-lg team-section p-3">
                     <p>{ dis }</p>
                     <div className="card-body d-flex align-items-center">
                         <div className="card-thumbnail">

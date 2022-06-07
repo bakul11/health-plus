@@ -7,7 +7,7 @@ const useAdmin = user => {
         const email = user?.email;
 
         if (email) {
-            const url = `http://localhost:5000/admin/${email}`;
+            const url = `https://tranquil-tor-96157.herokuapp.com/admin/${email}`;
             fetch(url, {
                 method: 'GET',
                 headers: {

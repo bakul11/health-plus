@@ -7,7 +7,7 @@ const AdminCart = ({ userAdmin, index, admin, setAdmin }) => {
 
     //Make admin
     const handleMakeAdmin = () => {
-        const url = `http://localhost:5000/user/admin/${email}`
+        const url = `https://tranquil-tor-96157.herokuapp.com/user/admin/${email}`
         fetch(url, {
             method: 'PUT',
             headers: {
@@ -28,7 +28,7 @@ const AdminCart = ({ userAdmin, index, admin, setAdmin }) => {
     const handleRemoveAdmin = id => {
         const removeAdmin = window.confirm('Do You Want Delete Admin ?');
         if (removeAdmin) {
-            const url = `http://localhost:5000/removeAdmin/${id}`
+            const url = `https://tranquil-tor-96157.herokuapp.com/removeAdmin/${id}`
             fetch(url, {
                 method: 'DELETE'
             })

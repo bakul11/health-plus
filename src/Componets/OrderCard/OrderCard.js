@@ -11,7 +11,7 @@ const OrderCard = ({ order, setOrder }) => {
 
         if (confirmDelete) {
 
-            const url = `http://localhost:5000/orderDelete/${id}`;
+            const url = `https://tranquil-tor-96157.herokuapp.com/orderDelete/${id}`;
 
             fetch(url, {
                 method: 'DELETE'
